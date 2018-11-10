@@ -130,53 +130,13 @@ class AdUnitDataSource {
 
     List<MoPubSampleAdUnit> getDefaultAdUnits() {
         final List<MoPubSampleAdUnit> adUnitList = new ArrayList<>();
+
         adUnitList.add(
                 new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_banner), BANNER)
-                        .description("MoPub Banner Sample")
+                        .Builder("824971370068431c82c64a0b8745f9c3", INTERSTITIAL)
+                        .description("Mobile Widget")
                         .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_mrect), MRECT)
-                        .description("MoPub Mrect Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_leaderboard), LEADERBOARD)
-                        .description("MoPub Leaderboard Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_interstitial), INTERSTITIAL)
-                        .description("MoPub Interstitial Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_rewarded_video),
-                        REWARDED_VIDEO)
-                        .description("MoPub Rewarded Video Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_rewarded_rich_media),
-                        REWARDED_VIDEO)
-                        .description("MoPub Rewarded Rich Media Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_native), LIST_VIEW)
-                        .description("MoPub Ad Placer Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_native), RECYCLER_VIEW)
-                        .description("MoPub Recycler View Sample")
-                        .build());
-        adUnitList.add(
-                new MoPubSampleAdUnit
-                        .Builder(mContext.getString(R.string.ad_unit_id_native), CUSTOM_NATIVE)
-                        .description("MoPub View Pager Sample")
-                        .build());
+
         return adUnitList;
     }
 

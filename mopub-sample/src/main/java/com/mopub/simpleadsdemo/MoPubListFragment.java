@@ -90,16 +90,8 @@ public class MoPubListFragment extends ListFragment implements TrashCanClickList
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.ad_unit_list_fragment, container, false);
-        final Button button = (Button) view.findViewById(R.id.add_ad_unit_button);
         final TextView versionCodeView = (TextView) view.findViewById(R.id.version_code);
         versionCodeView.setText("SDK Version " + MoPub.SDK_VERSION);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                onAddClicked(view);
-            }
-        });
 
         return view;
     }

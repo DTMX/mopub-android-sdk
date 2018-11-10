@@ -6,6 +6,7 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
     }
 
     dependencies {

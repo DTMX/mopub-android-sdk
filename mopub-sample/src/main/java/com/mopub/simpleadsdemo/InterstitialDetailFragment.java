@@ -28,9 +28,6 @@ public class InterstitialDetailFragment extends Fragment implements Interstitial
         final MoPubSampleAdUnit adConfiguration = MoPubSampleAdUnit.fromBundle(getArguments());
         final View view = inflater.inflate(R.layout.interstitial_detail_fragment, container, false);
         final DetailFragmentViewHolder views = DetailFragmentViewHolder.fromView(view);
-        views.mKeywordsField.setText(getArguments().getString(MoPubListFragment.KEYWORDS_KEY, ""));
-        views.mUserDataKeywordsField.setText(getArguments().getString(MoPubListFragment.USER_DATA_KEYWORDS_KEY, ""));
-        hideSoftKeyboard(views.mUserDataKeywordsField);
 
         final String adUnitId = adConfiguration.getAdUnitId();
         views.mDescriptionView.setText(adConfiguration.getDescription());
@@ -43,10 +40,6 @@ public class InterstitialDetailFragment extends Fragment implements Interstitial
                     mMoPubInterstitial = new MoPubInterstitial(getActivity(), adUnitId);
                     mMoPubInterstitial.setInterstitialAdListener(InterstitialDetailFragment.this);
                 }
-                final String keywords = views.mKeywordsField.getText().toString();
-                final String userDatakeywords = views.mUserDataKeywordsField.getText().toString();
-                mMoPubInterstitial.setKeywords(keywords);
-                mMoPubInterstitial.setUserDataKeywords(userDatakeywords);
                 mMoPubInterstitial.load();
             }
         });
