@@ -52,6 +52,7 @@ public class MoPubSampleActivity extends FragmentActivity {
     }
 
     private MoPubListFragment mMoPubListFragment;
+    private InterstitialDetailFragment interstitialDetailFragement;
     private Intent mDeeplinkIntent;
     @Nullable
     PersonalInfoManager mPersonalInfoManager;
@@ -82,7 +83,8 @@ public class MoPubSampleActivity extends FragmentActivity {
         MoPub.setLocationPrecision(4);
 
         if (savedInstanceState == null) {
-            createMoPubListFragment(getIntent());
+            // createMoPubListFragment(getIntent());
+            createInterstitalDetailFragment(getIntent());
         }
 
         SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder("b195f8dd8ded45fe847ad89ed1d016da")
@@ -116,6 +118,17 @@ public class MoPubSampleActivity extends FragmentActivity {
             mMoPubListFragment.setArguments(intent.getExtras());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, mMoPubListFragment).commit();
+
+            mDeeplinkIntent = intent;
+        }
+    }
+
+    private void createInterstitalDetailFragment(@NonNull final Intent intent) {
+        if (findViewById(R.id.fragment_container) != null) {
+            interstitialDetailFragement = new InterstitialDetailFragment();
+            interstitialDetailFragement.setArguments(intent.getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, interstitialDetailFragement).commit();
 
             mDeeplinkIntent = intent;
         }

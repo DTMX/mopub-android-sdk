@@ -25,7 +25,8 @@ public class InterstitialDetailFragment extends Fragment implements Interstitial
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final MoPubSampleAdUnit adConfiguration = MoPubSampleAdUnit.fromBundle(getArguments());
+        final AdUnitDataSource adUnitDataSource = new AdUnitDataSource(this.getContext());
+        final MoPubSampleAdUnit adConfiguration = adUnitDataSource.getDefaultAdUnits().get(0);
         final View view = inflater.inflate(R.layout.interstitial_detail_fragment, container, false);
         final DetailFragmentViewHolder views = DetailFragmentViewHolder.fromView(view);
 
