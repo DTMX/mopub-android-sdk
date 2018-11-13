@@ -82,11 +82,6 @@ public class MoPubSampleActivity extends FragmentActivity {
         MoPub.setLocationAwareness(MoPub.LocationAwareness.TRUNCATED);
         MoPub.setLocationPrecision(4);
 
-        if (savedInstanceState == null) {
-            // createMoPubListFragment(getIntent());
-            createInterstitalDetailFragment(getIntent());
-        }
-
         SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder("b195f8dd8ded45fe847ad89ed1d016da")
                 .build();
         MoPub.initializeSdk(this, sdkConfiguration, initSdkListener());
@@ -157,6 +152,7 @@ public class MoPubSampleActivity extends FragmentActivity {
                 if (mPersonalInfoManager != null && mPersonalInfoManager.shouldShowConsentDialog()) {
                     mPersonalInfoManager.loadConsentDialog(initDialogLoadListener());
                 }
+                createInterstitalDetailFragment(getIntent());
             }
         };
     }

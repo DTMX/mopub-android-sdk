@@ -21,6 +21,7 @@ import static com.mopub.simpleadsdemo.Utils.logToast;
 public class InterstitialDetailFragment extends Fragment implements InterstitialAdListener {
     private MoPubInterstitial mMoPubInterstitial;
     private Button mShowButton;
+    private DetailFragmentViewHolder views;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,30 +29,20 @@ public class InterstitialDetailFragment extends Fragment implements Interstitial
         final AdUnitDataSource adUnitDataSource = new AdUnitDataSource(this.getContext());
         final MoPubSampleAdUnit adConfiguration = adUnitDataSource.getDefaultAdUnits().get(0);
         final View view = inflater.inflate(R.layout.interstitial_detail_fragment, container, false);
-        final DetailFragmentViewHolder views = DetailFragmentViewHolder.fromView(view);
+        views = DetailFragmentViewHolder.fromView(view);
 
         final String adUnitId = adConfiguration.getAdUnitId();
         views.mDescriptionView.setText(adConfiguration.getDescription());
         views.mAdUnitIdView.setText(adUnitId);
-        views.mLoadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mShowButton.setEnabled(false);
-                if (mMoPubInterstitial == null) {
-                    mMoPubInterstitial = new MoPubInterstitial(getActivity(), adUnitId);
-                    mMoPubInterstitial.setInterstitialAdListener(InterstitialDetailFragment.this);
-                }
-                mMoPubInterstitial.load();
-            }
-        });
+        if (mMoPubInterstitial == null) {
+            mMoPubInterstitial = new MoPubInterstitial(getActivity(), adUnitId);
+            mMoPubInterstitial.setInterstitialAdListener(InterstitialDetailFragment.this);
+        }
+        mMoPubInterstitial.load();
+
         mShowButton = views.mShowButton;
         mShowButton.setEnabled(false);
-        mShowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mMoPubInterstitial.show();
-            }
-        });
+        views.mLoadButton.setEnabled(false);
 
         return view;
     }
@@ -69,20 +60,19 @@ public class InterstitialDetailFragment extends Fragment implements Interstitial
     // InterstitialAdListener implementation
     @Override
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
-        mShowButton.setEnabled(true);
+        mMoPubInterstitial.show();
         logToast(getActivity(), "Interstitial loaded.");
     }
 
     @Override
     public void onInterstitialFailed(MoPubInterstitial interstitial, MoPubErrorCode errorCode) {
-        mShowButton.setEnabled(false);
         final String errorMessage = (errorCode != null) ? errorCode.toString() : "";
         logToast(getActivity(), "Interstitial failed to load: " + errorMessage);
+        mMoPubInterstitial.load();
     }
 
     @Override
     public void onInterstitialShown(MoPubInterstitial interstitial) {
-        mShowButton.setEnabled(false);
         logToast(getActivity(), "Interstitial shown.");
     }
 
